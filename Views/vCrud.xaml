@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ctrujilloS6A.Views.vCrud"
+             Title="vCrud">
+    <VerticalStackLayout
+        Spacing="20"
+        Padding="20">
+        <Label 
+            Text="CRUD DE USUARIOS"
+            FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Grid ColumnDefinitions="Auto,*,*,Auto"
+              Padding="5"
+              BackgroundColor="#EEE">
+            <Label Text="ID" FontAttributes="Bold"/>
+            <Label Text="Nombre" Grid.Column="1" FontAttributes="Bold"/>
+            <Label Text="Correo" Grid.Column="2" FontAttributes="Bold"/>
+            <Label Text="Estado" Grid.Column="3" FontAttributes="Bold"/>
+        </Grid>
+
+        <CollectionView x:Name="lvUsuarios">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="Auto,*,*,Auto" Padding="5">
+                        <Label Text="{Binding id}" />
+                        <Label Text="{Binding nombre}" Grid.Column="1"/>
+                        <Label Text="{Binding correo}" Grid.Column="2"/>
+                        <Label Text="{Binding estado}" Grid.Column="3"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+             
+    </VerticalStackLayout>
+</ContentPage>
