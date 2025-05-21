@@ -8,12 +8,12 @@ namespace ctrujilloS6A.Models
 {
     public class Usuario
     {
-        public long id{ get; set; }
+        public long Id{ get; set; }
 
-        public string nombre { get; set; }
+        public string? Nombre { get; set; }
 
-        public string correo { get; set; }
+        public string? Correo { get; set; }
 
-        public Boolean estado { get; set; }
+        public Boolean Estado { get; set; }
     }
 }

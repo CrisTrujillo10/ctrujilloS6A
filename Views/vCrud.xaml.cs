@@ -6,20 +6,15 @@ namespace ctrujilloS6A.Views;
 
 public partial class vCrud : ContentPage
 {
-	private const string URL = "http://172.22.224.1:8086/api/usuario/views";
+	private const string URL = "http://localhost:5070/api/usuario/views";
 
     private HttpClient cliente = new HttpClient();
 	private ObservableCollection<Usuario> _usuarioTem;
 	public vCrud()
 	{
 		InitializeComponent();
+        mostrarUsuario();
 	}
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        await mostrarUsuario();
-    }
 
     public async Task mostrarUsuario()
     {
@@ -49,6 +44,6 @@ public partial class vCrud : ContentPage
 
         lvUsuarios.SelectedItem = null;
 
-        await Navigation.PushAsync(new vEliminarUsuario(usuario));
+        await Navigation.PushAsync(new vActElimUsuario(usuario));
     }
 }

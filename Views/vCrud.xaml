@@ -2,55 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ctrujilloS6A.Views.vCrud"
-             Title="vCrud">
-    <VerticalStackLayout
-        Spacing="20"
-        Padding="20">
+             Title="vCrud"
+             BackgroundColor="White">
+    <VerticalStackLayout Spacing="20" Padding="20">
+
         <Label Text="CRUD DE USUARIOS"
                FontSize="24"
                FontAttributes="Bold"
+               TextColor="Black"
                HorizontalOptions="Center" />
 
+        <Grid x:Name="tablaUsuarios"
+              RowSpacing="1"
+              ColumnSpacing="1"
+              Padding="1"
+              BackgroundColor="Black">
 
-        <Grid Padding="5" BackgroundColor="#EEEEEE" RowSpacing="1" ColumnSpacing="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Text="ID" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="#D3D3D3" Padding="5"/>
-            <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="#D3D3D3" Padding="5"/>
-            <Label Text="Correo" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="#D3D3D3" Padding="5"/>
-            <Label Text="Estado" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="#D3D3D3" Padding="5"/>
+            <Label Text="ID" Grid.Row="0" Grid.Column="0"
+                   BackgroundColor="#FFA500" TextColor="Black"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   FontAttributes="Bold" Padding="5" WidthRequest="60"/>
+            <Label Text="Nombre" Grid.Row="0" Grid.Column="1"
+                   BackgroundColor="#FFA500" TextColor="Black"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   FontAttributes="Bold" Padding="5"/>
+            <Label Text="Correo" Grid.Row="0" Grid.Column="2"
+                   BackgroundColor="#FFA500" TextColor="Black"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   FontAttributes="Bold" Padding="5"/>
+            <Label Text="Estado" Grid.Row="0" Grid.Column="3"
+                   BackgroundColor="#FFA500" TextColor="Black"
+                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                   FontAttributes="Bold" Padding="5"/>
         </Grid>
 
-        <ListView x:Name="lvUsuarios" SeparatorVisibility="None" ItemSelected="lvUsuarios_ItemSelected">
+        <ListView x:Name="lvUsuarios"
+          HasUnevenRows="False"
+          SeparatorVisibility="None"
+          BackgroundColor="White"
+          RowHeight="40"
+          ItemSelected="lvUsuarios_ItemSelected"
+          Margin="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="5">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <Grid RowSpacing="1" ColumnSpacing="1" BackgroundColor="White" Padding="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
+                            <Label Text="{Binding Id}" Grid.Column="0"
+                                   BackgroundColor="#FFA500" TextColor="Black"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   Padding="5" WidthRequest="60"/>
 
-                            <Label Text="{Binding id}" HorizontalOptions="Center" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="5"/>
-                            <Label Text="{Binding nombre}" HorizontalOptions="Center" Grid.Column="1" BackgroundColor="#FFFFFF" Padding="5"/>
-                            <Label Text="{Binding correo}" HorizontalOptions="Center" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="5"/>
-                            <Label Text="{Binding estado, Converter={StaticResource BoolToStringConverter}}" HorizontalOptions="Center" Grid.Column="3" BackgroundColor="#FFFFFF" Padding="5"/>
+                            <Label Text="{Binding Nombre}" Grid.Column="1"
+                                   BackgroundColor="#FFA500" TextColor="Black"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   Padding="5"/>
+
+                            <Label Text="{Binding Correo}" Grid.Column="2"
+                                   BackgroundColor="#FFA500" TextColor="Black"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   Padding="5"/>
+
+                            <Label Text="{Binding Estado}" Grid.Column="3"
+                                   BackgroundColor="#FFA500" TextColor="Black"
+                                   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                   Padding="5"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

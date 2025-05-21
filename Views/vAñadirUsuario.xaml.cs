@@ -8,21 +8,21 @@ namespace ctrujilloS6A.Views;
 
 public partial class vAñadirUsuario : ContentPage
 {
-	public vAñadirUsuario()
-	{
-		InitializeComponent();
-	}
+    public vAñadirUsuario()
+    {
+        InitializeComponent();
+    }
 
-    private async void btnAñadir_Clicked(object sender, EventArgs e)
+    private void btnAñadir_Clicked(object sender, EventArgs e)
     {
         try
         {
             Usuario nuevoUsuario = new Usuario
             {
-                id = long.Parse(txtId.Text),
-                nombre = txtNombre.Text,
-                correo = txtCorreo.Text,
-                estado = bool.Parse(txtEstado.Text.ToLower())
+                Id = long.Parse(txtId.Text),
+                Nombre = txtNombre.Text,
+                Correo = txtCorreo.Text,
+                Estado = bool.Parse(txtEstado.Text.ToLower())
             };
 
             string json = JsonConvert.SerializeObject(nuevoUsuario);
@@ -31,26 +31,38 @@ public partial class vAñadirUsuario : ContentPage
 
             using (HttpClient client = new HttpClient())
             {
-                var response = await client.PostAsync("http://172.22.224.1:8086/api/usuario/add", content);
+                var response = client.PostAsync("http://localhost:5070/api/usuario", content).GetAwaiter().GetResult();
 
                 if (response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Éxito", "Usuario añadido correctamente", "OK");
-                    await Navigation.PushAsync(new vCrud());
+                    this.Dispatcher.Dispatch(() =>
+                    {
+                        DisplayAlert("Éxito", "Usuario añadido correctamente", "OK");
+                        Navigation.PushAsync(new vCrud());
+                    });
                 }
                 else
                 {
-                    await DisplayAlert("Error", $"Código de respuesta: {response.StatusCode}", "OK");
+                    this.Dispatcher.Dispatch(() =>
+                    {
+                        DisplayAlert("Error", $"Código de respuesta: {response.StatusCode}", "OK");
+                    });
                 }
             }
         }
         catch (FormatException)
         {
-            await DisplayAlert("Error", "ID debe ser numérico y Estado debe ser 'true' o 'false'", "OK");
+            this.Dispatcher.Dispatch(() =>
+            {
+                DisplayAlert("Error", "ID debe ser numérico y Estado debe ser 'true' o 'false'", "OK");
+            });
         }
         catch (Exception ex)
         {
-            await DisplayAlert("Error inesperado", ex.Message, "OK");
+            this.Dispatcher.Dispatch(() =>
+            {
+                DisplayAlert("Error inesperado", ex.Message, "OK");
+            });
         }
     }
 }
