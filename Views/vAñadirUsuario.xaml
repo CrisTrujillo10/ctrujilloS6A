@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ctrujilloS6A.Views.vAñadirUsuario"
+             Title="vAñadirUsuario">
+
+    <VerticalStackLayout
+        Padding="20"
+        Spacing="20">
+        <Label 
+            Text="AÑADIR USUARIO"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Entry x:Name="txtId"
+               Placeholder="Ingrese el id"/>
+        
+        <Entry
+            x:Name="txtNombre"
+            Placeholder="Ingrese el nombre"/>
+        
+        <Entry
+            x:Name="txtCorreo"
+            Placeholder="Ingrese el correo"/>
+
+        <Entry
+            x:Name="txtEstado"
+            Placeholder="Ingrese el estado"/>
+        
+        <Button
+            x:Name="btnAñadir"
+            Text="Añadir Usuario"
+            Clicked="btnAñadir_Clicked" />
+
+    </VerticalStackLayout>
+</ContentPage>

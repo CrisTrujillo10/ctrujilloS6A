@@ -13,20 +13,42 @@ public partial class vCrud : ContentPage
 	public vCrud()
 	{
 		InitializeComponent();
-		mostrarUsuario();
 	}
 
-	public async void mostrarUsuario()
-	{
-		var content = await cliente.GetStringAsync(URL);
-		List<Usuario> lista = JsonConvert.DeserializeObject<List<Usuario>>(content);
-		_usuarioTem = new ObservableCollection<Usuario>(lista);
-		lvUsuarios.ItemsSource = _usuarioTem;
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await mostrarUsuario();
+    }
 
-        lvUsuarios.ItemsSource = new List<Usuario>
-		{
-			new Usuario { id = 1, nombre = "Cris", correo = "cris@gmail.com", estado = true },
-			new Usuario { id = 2, nombre = "Luis", correo = "luis@gmail.com", estado = true },
-		};
+    public async Task mostrarUsuario()
+    {
+        try
+        {
+            var content = await cliente.GetStringAsync(URL);
+            List<Usuario> lista = JsonConvert.DeserializeObject<List<Usuario>>(content);
+            _usuarioTem = new ObservableCollection<Usuario>(lista);
+            lvUsuarios.ItemsSource = _usuarioTem;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"No se pudieron cargar los usuarios: {ex.Message}", "OK");
+        }
+    }
+
+    private void btnAñadir_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushAsync(new vAñadirUsuario());
+    }
+
+	private async void lvUsuarios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+	{
+        if (e.SelectedItem == null) return;
+
+        var usuario = e.SelectedItem as Usuario;
+
+        lvUsuarios.SelectedItem = null;
+
+        await Navigation.PushAsync(new vEliminarUsuario(usuario));
     }
 }

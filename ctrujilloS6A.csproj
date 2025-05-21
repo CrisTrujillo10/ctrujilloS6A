@@ -66,7 +66,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\vActElimUsuario.xaml.cs">
+	    <DependentUpon>vActElimUsuario.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\vAñadirUsuario.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\vCrud.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\vActElimUsuario.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

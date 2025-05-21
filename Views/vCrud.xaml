@@ -6,34 +6,60 @@
     <VerticalStackLayout
         Spacing="20"
         Padding="20">
-        <Label 
-            Text="CRUD DE USUARIOS"
-            FontSize="20"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Label Text="CRUD DE USUARIOS"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
 
-        <Grid ColumnDefinitions="Auto,*,*,Auto"
-              Padding="5"
-              BackgroundColor="#EEE">
-            <Label Text="ID" FontAttributes="Bold"/>
-            <Label Text="Nombre" Grid.Column="1" FontAttributes="Bold"/>
-            <Label Text="Correo" Grid.Column="2" FontAttributes="Bold"/>
-            <Label Text="Estado" Grid.Column="3" FontAttributes="Bold"/>
+
+        <Grid Padding="5" BackgroundColor="#EEEEEE" RowSpacing="1" ColumnSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="ID" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="0" BackgroundColor="#D3D3D3" Padding="5"/>
+            <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="1" BackgroundColor="#D3D3D3" Padding="5"/>
+            <Label Text="Correo" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="2" BackgroundColor="#D3D3D3" Padding="5"/>
+            <Label Text="Estado" FontAttributes="Bold" HorizontalOptions="Center" Grid.Row="0" Grid.Column="3" BackgroundColor="#D3D3D3" Padding="5"/>
         </Grid>
 
-        <CollectionView x:Name="lvUsuarios">
-            <CollectionView.ItemTemplate>
+        <ListView x:Name="lvUsuarios" SeparatorVisibility="None" ItemSelected="lvUsuarios_ItemSelected">
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="Auto,*,*,Auto" Padding="5">
-                        <Label Text="{Binding id}" />
-                        <Label Text="{Binding nombre}" Grid.Column="1"/>
-                        <Label Text="{Binding correo}" Grid.Column="2"/>
-                        <Label Text="{Binding estado}" Grid.Column="3"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    <ViewCell>
+                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="5">
 
-             
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Label Text="{Binding id}" HorizontalOptions="Center" Grid.Column="0" BackgroundColor="#FFFFFF" Padding="5"/>
+                            <Label Text="{Binding nombre}" HorizontalOptions="Center" Grid.Column="1" BackgroundColor="#FFFFFF" Padding="5"/>
+                            <Label Text="{Binding correo}" HorizontalOptions="Center" Grid.Column="2" BackgroundColor="#FFFFFF" Padding="5"/>
+                            <Label Text="{Binding estado, Converter={StaticResource BoolToStringConverter}}" HorizontalOptions="Center" Grid.Column="3" BackgroundColor="#FFFFFF" Padding="5"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button x:Name="btnAñadir"
+                Text="Añadir Usuario"
+                Clicked="btnAñadir_Clicked"/>
+
     </VerticalStackLayout>
 </ContentPage>
